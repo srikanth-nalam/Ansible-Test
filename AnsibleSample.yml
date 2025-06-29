@@ -1,0 +1,7 @@
+---
+- name: Hello from Tower
+  hosts: all
+  tasks:
+    - name: Print Hello
+      debug:
+        msg: "Tower is working!"
