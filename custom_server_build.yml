@@ -6,6 +6,10 @@
     profiles: []
 
   tasks:
+    - name: Debug all received variables
+      debug:
+        var: vars
+
     - name: Display ticket and environment
       debug:
         msg: "Change Ticket: {{ change_ticket }}, Environment: {{ environment }}"
@@ -16,8 +20,25 @@
 
     - name: Display OS info
       debug:
-        msg: "OS: {{ os_type }}, Version: {{ os_version }}"   
+        msg: "OS: {{ os_type }}, Version: {{ os_version }}"    
 
     - name: Display profile data
       debug:
         var: profiles
+
+    - name: Set result variable for vRO stdout fetch
+      set_fact:
+        result: |
+          {
+            "change_ticket": "{{ change_ticket }}",
+            "environment": "{{ environment }}",
+            "location": "{{ location }}",
+            "location_zone": "{{ location_zone }}",
+            "os_type": "{{ os_type }}",
+            "os_version": "{{ os_version }}",            
+            "profiles": {{ profiles | to_json }}
+          }
+
+    - name: Output result for vRO
+      debug:
+        msg: "{{ result }}"
