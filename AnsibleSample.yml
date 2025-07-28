@@ -1,7 +1,31 @@
 ---
-- name: Hello from Tower
-  hosts: all
+- name: Server build based on form input
+  hosts: localhost
+  gather_facts: no
+  vars:
+    profiles: []
+
   tasks:
-    - name: Print Hello
+    - name: Debug all received variables
       debug:
-        msg: "Tower is working!"
+        var: vars
+
+    - name: Display ticket and environment
+      debug:
+        msg: "Change Ticket: {{ change_ticket }}, Environment: {{ environment }}"
+
+    - name: Display location info
+      debug:
+        msg: "Location: {{ location }}, Zone: {{ location_zone }}"
+
+    - name: Display OS info
+      debug:
+        msg: "OS: {{ os_type }}, Version: {{ os_version }}"
+
+    - name: Display uploaded file name
+      debug:
+        msg: "Uploaded file: {{ file_uploaded }}"
+
+    - name: Display profile data
+      debug:
+        var: profiles
