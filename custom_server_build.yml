@@ -16,11 +16,7 @@
 
     - name: Display OS info
       debug:
-        msg: "OS: {{ os_type }}, Version: {{ os_version }}"
-
-    - name: Display uploaded file name
-      debug:
-        msg: "Uploaded file: {{ file_uploaded }}"
+        msg: "OS: {{ os_type }}, Version: {{ os_version }}"   
 
     - name: Display profile data
       debug:
